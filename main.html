@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GRAFIK DATA</title>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+    <style>
+      #loadingIndicator {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8);
+        z-index: 9999;
+        text-align: center;
+        padding-top: 20%;
+      }
+
+      #loadingIndicator img {
+        width: 50px;
+        height: 50px;
+      }
+
+      #loadingIndicator p {
+        margin-top: 10px;
+      }
+
+      #barChart {
+        width: 100%;
+        height: auto;
+        min-height: 300px;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table th,
+      .table td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+
+      .table th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+      <div id="loadingIndicator">
+        <img src="dist/img/Pulse-1s-200px.gif" alt="Loading Spinner" />
+        <p>Loading...</p>
+      </div>
+
+      <div
+        class="preloader flex-column justify-content-center align-items-center"
+      >
+        <img
+          class="animation__shake"
+          src="dist/img/AdminLTELogo.png"
+          alt="AdminLTELogo"
+          height="60"
+          width="60"
+        />
+      </div>
+
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Home</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-widget="navbar-search"
+              href="#"
+              role="button"
+            >
+              <i class="fas fa-search"></i>
+            </a>
+            <div class="navbar-search-block">
+              <form class="form-inline">
+                <div class="input-group input-group-sm">
+                  <input
+                    class="form-control form-control-navbar"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                  />
+                  <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <button
+                      class="btn btn-navbar"
+                      type="button"
+                      data-widget="navbar-search"
+                    >
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+              <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-widget="control-sidebar"
+              data-controlsidebar-slide="true"
+              href="#"
+              role="button"
+            >
+              <i class="fas fa-th-large"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <div class="sidebar">
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img
+                src="dist/img/user2-160x160.jpg"
+                class="img-circle elevation-2"
+                alt="User Image"
+              />
+            </div>
+            <div class="info">
+              <a href="#" class="d-block">Piyoxz</a>
+            </div>
+          </div>
+
+          <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+              <input
+                class="form-control form-control-sidebar"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-sidebar">
+                  <i class="fas fa-search fa-fw"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Dashboard
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./main.html" class="nav-link active">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>GRAFIK</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="content-wrapper">
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1 class="m-0">Dashboard</h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active">Grafik Data</li>
+                </ol>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#advancedFilterModal"
+                >
+                  <i class="fas fa-filter"></i> Advanced Filter
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <section class="col-lg-12 connectedSortable">
+                <div class="card card-success">
+                  <div class="card-header">
+                    <h3 class="card-title">Rekap Laporan</h3>
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="collapse"
+                      >
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="remove"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart">
+                      <canvas
+                        id="barChart"
+                        style="
+                          min-height: 250px;
+                          height: 250px;
+                          max-height: 250px;
+                          max-width: 100%;
+                        "
+                      ></canvas>
+                      <div id="noDataMessage" style="display: none">
+                        No data available
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="row">
+              <section class="col-lg-12 connectedSortable">
+                <div class="card card-success">
+                  <div class="card-header">
+                    <h3 class="card-title">Rekap Perbandingan</h3>
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="collapse"
+                      >
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="remove"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div id="comparisonTableContainer">
+                      <div id="comparisonTableWrapper"></div>
+                      <div id="paginationControls"></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="advancedFilterModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="advancedFilterModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="advancedFilterModalLabel">
+              Advanced Filter
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="advancedFilterForm">
+              <div class="form-group">
+                <label for="tahunFilter">Filter by Year:</label>
+                <select
+                  class="form-control"
+                  id="tahunFilter"
+                  name="tahun"
+                ></select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="applyAdvancedFilter()"
+            >
+              Apply Filter
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script>
+      $.widget.bridge("uibutton", $.ui.button);
+    </script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <script src="dist/js/adminlte.js"></script>
+    <script src="dist/js/pages/dashboard.js"></script>
+
+    <script>
+      let formFilter = {
+        tahun: "semua",
+      };
+      let itemsTable = [];  
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(async function () {
+        $("#loadingIndicator").show();
+        try {
+          await loadDaftar();
+          await createBarChart();
+          await createComparisonTable();
+        } catch (error) {
+          console.error("Error:", error);
+        } finally {
+          $("#loadingIndicator").hide();
+        }
+      });
+    </script>
+
+    <script>
+      async function loadDaftar() {
+        try {
+          const response = await fetch(
+            `http://localhost:3000/api/daftardashboard?tahun=${formFilter.tahun}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const data = await response.json();
+          $("#titlelaporantahun").text("Laporan Tahun " + formFilter.tahun);
+          itemsTable = data;
+        } catch (error) {
+          console.error("Error loading data:", error);
+          throw error;
+        }
+      }
+    </script>
+    <script>
+      async function applyAdvancedFilter() {
+        $("#advancedFilterModal").modal("hide");
+        $("#loadingIndicator").show();
+        formFilter.tahun = $("#tahunFilter").val();
+        loadDaftar();
+        createBarChart();
+        createComparisonTable();
+        $("#loadingIndicator").hide();
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentYear = new Date().getFullYear();
+        const selectElement = document.getElementById("tahunFilter");
+
+        for (let year = currentYear - 3; year <= currentYear + 10; year++) {
+          const option = document.createElement("option");
+          option.value = year.toString();
+          option.text = year.toString();
+          selectElement.appendChild(option);
+        }
+
+        let optionSemua = document.createElement("option");
+        optionSemua.value = "semua";
+        optionSemua.text = "Semua";
+        selectElement.appendChild(optionSemua);
+
+        $("#tahunFilter").val("semua");
+        formFilter.tahun = "semua";
+      });
+    </script>
+
+    <script type="text/javascript">
+      function createBarChart() {
+        const laporanCount = {};
+        itemsTable.data.forEach((item) => {
+          const laporan = item.laporan;
+          if (laporanCount[laporan]) {
+            laporanCount[laporan]++;
+          } else {
+            laporanCount[laporan] = 1;
+          }
+        });
+
+        const labels = Object.keys(laporanCount);
+        const dataValues = Object.values(laporanCount);
+
+        const ctx = document.getElementById("barChart").getContext("2d");
+        const barChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Jumlah Laporan",
+                data: dataValues,
+                backgroundColor: "rgba(54, 162, 235, 0.5)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  font: {
+                    size: 14,
+                  },
+                },
+              },
+              x: {
+                ticks: {
+                  font: {
+                    size: 14,
+                  },
+                },
+              },
+            },
+          },
+        });
+      }
+
+      function createComparisonTable() {
+        const comparisonData = {};
+
+        itemsTable.data.forEach((item) => {
+          const area = item.area;
+          const laporan = item.laporan;
+
+          if (!comparisonData[area]) {
+            comparisonData[area] = {};
+          }
+
+          if (!comparisonData[area][laporan]) {
+            comparisonData[area][laporan] = 0;
+          }
+
+          comparisonData[area][laporan]++;
+        });
+
+        const comparisonTable = document.createElement("table");
+        comparisonTable.classList.add("table");
+        comparisonTable.classList.add("table-bordered");
+
+        const tableHead = document.createElement("thead");
+        const headerRow = document.createElement("tr");
+        const namaAreaHeader = document.createElement("th");
+        namaAreaHeader.textContent = "Nama Area";
+        headerRow.appendChild(namaAreaHeader);
+
+        const allLaporan = new Set();
+        Object.values(comparisonData).forEach((areaData) => {
+          Object.keys(areaData).forEach((laporan) => {
+            allLaporan.add(laporan);
+          });
+        });
+
+        allLaporan.forEach((laporan) => {
+          const laporanHeader = document.createElement("th");
+          laporanHeader.textContent = laporan;
+          headerRow.appendChild(laporanHeader);
+        });
+
+        const totalHeader = document.createElement("th");
+        totalHeader.textContent = "Total";
+        headerRow.appendChild(totalHeader);
+
+        tableHead.appendChild(headerRow);
+        comparisonTable.appendChild(tableHead);
+        const tableBody = document.createElement("tbody");
+
+        Object.entries(comparisonData).forEach(([area, areaData]) => {
+          const row = document.createElement("tr");
+          const namaAreaCell = document.createElement("td");
+          namaAreaCell.textContent = area;
+          row.appendChild(namaAreaCell);
+
+          let total = 0;
+          allLaporan.forEach((laporan) => {
+            const cell = document.createElement("td");
+            cell.textContent = areaData[laporan] || 0;
+            row.appendChild(cell);
+            total += areaData[laporan] || 0;
+          });
+
+          const totalCell = document.createElement("td");
+          totalCell.textContent = total;
+          row.appendChild(totalCell);
+
+          tableBody.appendChild(row);
+        });
+
+        comparisonTable.appendChild(tableBody);
+
+        const tableContainer = document.getElementById(
+          "comparisonTableContainer"
+        );
+        tableContainer.innerHTML = "";
+        tableContainer.appendChild(comparisonTable);
+      }
+    </script>
+  </body>
+</html>
